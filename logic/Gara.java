@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import exceptions.GaraException;
 import exceptions.InvalidGaraParameters;
@@ -29,6 +30,27 @@ public class Gara {
         this.tInizio = System.currentTimeMillis();
     }
 
+    public void generateBots(int n) {
+        Random r = new Random();
+
+        for(int i = 0; i < n; i++) {
+            Player p = new Player("x", 
+                Database.BOT_NAMES[
+                    r.nextInt(Database.BOT_NAMES.length)
+                ]
+            );
+            p.setVeicolo(
+                Database.VEHICLES[
+                    r.nextInt(Database.VEHICLES.length)
+                ]
+            );
+
+            this.players.add(p);
+        }
+
+        
+    }
+
     public int getGiocatoriIscritti() {
         return this.players.size();
     }
@@ -43,6 +65,17 @@ public class Gara {
 
     public double getTempo(){
         return this.tInizio;
+    }
+
+    public boolean isFinished(double t) {
+        double deltaT = (t - this.tInizio) / 1000;
+        boolean finished = false;
+        for(Player p: this.players) {
+            if(distanzaPercorsa(p, deltaT) > this.getLunghezzaPista()) {
+                finished = true;
+            }
+        }
+        return finished;
     }
 
     // x = v(*t) + 1/2 * a * t*t

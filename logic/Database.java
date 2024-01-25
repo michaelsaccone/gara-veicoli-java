@@ -22,9 +22,9 @@ public class Database {
     };
 
     public static Pista[] PISTE = {
-        new Pista("Circuito arcobaleno", 0.32, 50),
-        new Pista("Mappa di carnot", 0.2, 50),
-        new Pista("Piston cup", 0.12, 65)
+        new Pista("Circuito arcobaleno", 0.32, 100),
+        new Pista("Mappa di carnot", 0.2, 100),
+        new Pista("Piston cup", 0.12, 100)
     };
 
     public static String[] BOT_NAMES = {
