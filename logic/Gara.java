@@ -2,6 +2,8 @@ package logic;
 
 import java.util.ArrayList;
 
+import exceptions.GaraException;
+import exceptions.InvalidGaraParameters;
 import models.*;
 
 public class Gara {
@@ -15,12 +17,17 @@ public class Gara {
     }
 
 
-    public Gara(int nPartecipanti, Pista pista) {
+    public Gara(int nPartecipanti, Pista pista) throws InvalidGaraParameters{
+
+        if (nPartecipanti <= 0 || null == pista ){
+            throw new InvalidGaraParameters("Numeri di partecipati o pista non valida");
+        }
         this.players = new ArrayList<>(nPartecipanti);
         this.pista = pista;
     }
 
-    public void start() {
+    public void start() throws GaraException {
+        
         this.tInizio = System.currentTimeMillis();
     }
 
