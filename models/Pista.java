@@ -2,10 +2,10 @@ package models;
 
 public class Pista {
     private String name;
-    private double lunghezza;
+    private int lunghezza;
     private double coeffAttrito; // riduzione accelerazione per il terreno
 
-    public Pista(String name, double coeffAttrito, double lunghezza) {
+    public Pista(String name, double coeffAttrito, int lunghezza) {
         this.name = name; 
         this.coeffAttrito = coeffAttrito;
         this.lunghezza = lunghezza;
@@ -19,7 +19,7 @@ public class Pista {
         return name;
     }
 
-    public double getLunghezza() {
+    public int getLunghezza() {
         return lunghezza;
     }
 }

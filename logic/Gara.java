@@ -16,8 +16,7 @@ public class Gara {
         this.players.add(p);
     }
 
-
-    public Gara(int nPartecipanti, Pista pista) throws InvalidGaraParameters{
+    public Gara(int nPartecipanti, Pista pista) throws InvalidGaraParameters {
 
         if (nPartecipanti <= 0 || null == pista ){
             throw new InvalidGaraParameters("Numeri di partecipati o pista non valida");
@@ -26,13 +25,28 @@ public class Gara {
         this.pista = pista;
     }
 
-    public void start() throws GaraException {
-        
+    public void start() {
         this.tInizio = System.currentTimeMillis();
     }
 
+    public int getGiocatoriIscritti() {
+        return this.players.size();
+    }
+
+    public int getLunghezzaPista() {
+        return this.pista.getLunghezza();
+    }
+
+    public Player getPlayerAt(int i){
+        return this.players.get(i);
+    }
+
+    public double getTempo(){
+        return this.tInizio;
+    }
+
     // x = v(*t) + 1/2 * a * t*t
-    public double distanzaPercorsa(Player p, double t) {
+    public int distanzaPercorsa(Player p, double t) {
         double v = (p.getVeicolo().getVelocita());
         if(p.getUpgrade() != null) v += p.getUpgrade().getVelocitaAggiunta();
 
@@ -40,7 +54,7 @@ public class Gara {
         a -= pista.getCoeffAttrito();
 
         double x = v*t + 0.5 * a * t*t;
-        return x;
+        return (int)Math.floor(x);
     }
 
 }

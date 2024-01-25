@@ -7,8 +7,7 @@ import models.Veicolo;
 public class App {
     public static void main(String[] args) {
         try {
-            Gara gara = new Gara(-1, Database.PISTE[1]);
-            gara = null;
+            Gara gara = new Gara(10, Database.PISTE[1]);
             gara.start();
         } catch (InvalidGaraParameters e) {
             e.printStackTrace();
